@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Night sky palette — deep indigo, starlight, rose-gold */
+    --background: 232 38% 7%;
+    --foreground: 35 30% 92%;
+
+    --card: 232 35% 10%;
+    --card-foreground: 35 30% 92%;
+
+    --popover: 232 35% 10%;
+    --popover-foreground: 35 30% 92%;
+
+    /* Rose gold — warm romantic glow */
+    --primary: 18 65% 72%;
+    --primary-foreground: 232 40% 8%;
+
+    --secondary: 232 30% 14%;
+    --secondary-foreground: 35 30% 92%;
+
+    --muted: 232 25% 16%;
+    --muted-foreground: 35 15% 65%;
+
+    /* Soft starlight accent */
+    --accent: 45 55% 78%;
+    --accent-foreground: 232 40% 8%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 35 30% 92%;
+
+    --border: 232 25% 18%;
+    --input: 232 25% 18%;
+    --ring: 18 65% 72%;
+
+    --radius: 0.75rem;
+
+    /* Custom emotional tokens */
+    --starlight: 45 80% 88%;
+    --moonlight: 220 30% 80%;
+    --deep-night: 235 45% 5%;
+    --twilight: 260 35% 18%;
+    --rose-gold: 18 70% 75%;
+    --rose-deep: 350 45% 55%;
+
+    --gradient-night: radial-gradient(ellipse at top, hsl(260 40% 15%) 0%, hsl(235 45% 7%) 50%, hsl(232 50% 4%) 100%);
+    --gradient-aurora: linear-gradient(135deg, hsl(260 40% 18% / 0.4) 0%, hsl(18 50% 25% / 0.3) 50%, hsl(232 40% 10% / 0.5) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(45 80% 88%) 0%, hsl(18 70% 75%) 50%, hsl(350 45% 70%) 100%);
+    --gradient-veil: linear-gradient(180deg, transparent 0%, hsl(232 50% 4% / 0.8) 100%);
+
+    --shadow-glow: 0 0 60px hsl(18 70% 75% / 0.15), 0 0 120px hsl(260 40% 40% / 0.1);
+    --shadow-soft: 0 20px 60px -20px hsl(232 50% 4% / 0.6);
+    --shadow-star: 0 0 20px hsl(45 80% 88% / 0.6), 0 0 40px hsl(45 80% 88% / 0.3);
+
+    --transition-slow: cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-gentle: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background: var(--gradient-night);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4, .serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-starlight {
+    color: hsl(var(--starlight));
+  }
+
+  .text-moonlight {
+    color: hsl(var(--moonlight));
+  }
+
+  .text-rose-gold {
+    color: hsl(var(--rose-gold));
+  }
+
+  .bg-deep-night {
+    background-color: hsl(var(--deep-night));
+  }
+
+  .glow-soft {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-star {
+    box-shadow: var(--shadow-star);
+  }
+
+  .veil-bottom {
+    background: var(--gradient-veil);
+  }
+
+  /* Star twinkle */
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  @keyframes drift {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-20px) translateX(10px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  @keyframes shooting-star {
+    0% { transform: translateX(0) translateY(0) rotate(-30deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateX(-500px) translateY(300px) rotate(-30deg); opacity: 0; }
+  }
+
+  @keyframes letter-reveal {
+    0% { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .animate-twinkle {
+    animation: twinkle 4s ease-in-out infinite;
+  }
+
+  .animate-drift {
+    animation: drift 12s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 6s ease-in-out infinite;
+  }
+
+  .animate-shooting {
+    animation: shooting-star 8s ease-in-out infinite;
+  }
+
+  .animate-letter-reveal {
+    animation: letter-reveal 1.4s var(--transition-slow) forwards;
+  }
+
+  /* Hidden message reveal */
+  .reveal-hidden {
+    transition: all 0.8s var(--transition-slow);
+  }
+}
